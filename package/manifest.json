@@ -1,0 +1,64 @@
+{
+    "$schema": "https://statics.teams.microsoft.com/sdk/v1.2/manifest/MicrosoftTeams.schema.json",
+    "manifestVersion": "1.2",
+    "version": "1.0.0",
+    "id": "5196a0d4-0107-4f2e-8689-b33341899ec0",
+    "packageName": "com.microsoft.teams.fortunebot",
+    "developer": {
+        "name": "Pedro Augusto",
+        "websiteUrl": "http://www.microsoft.com",
+        "privacyUrl": "https://www.teams.com/privacy",
+        "termsOfUseUrl": "https://www.teams.com/termsofuse"
+    },
+    "icons": {
+        "color": "color.png",
+        "outline": "outline.png"
+    },
+    "name": {
+        "short": "Fortune Bot",
+        "full": "Fortune Cookie Bot"
+    },
+    "description": {
+        "short": "Displays a fortune cookie",
+        "full": "Displays a random fortune cookie if you type \"fortune\" in the chat window"
+    },
+    "accentColor": "#FFFFFF",
+    "bots": [
+        {
+            "botId": "5a4d474f-848f-4ad3-b472-0afccd2bbd31",
+            "scopes": [
+                "team",
+                "personal"
+            ],
+            "commandLists": [
+                {
+                    "scopes": [
+                        "personal"
+                    ],
+                    "commands": [
+                        {
+                            "title": "fortune",
+                            "description": "Displays a random fortune cookie"
+                        }
+                    ]
+                },
+                {
+                    "scopes": [
+                        "team"
+                    ],
+                    "commands": [
+                        {
+                            "title": "fortune",
+                            "description": "Displays a random fortune cookie"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "permissions": [
+        "identity",
+        "messageTeamMembers"
+    ],
+    "validDomains": []
+}

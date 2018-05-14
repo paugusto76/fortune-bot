@@ -37,14 +37,7 @@ function randomIntInc (low, high) {
 
 // Receive messages from the user and respond by echoing each message back (prefixed with 'You said:')
 var bot = new builder.UniversalBot(connector, function (session) {
-    // var index = randomIntInc(0, quotes.length - 1);
-
-    // var msg = new builder.HeroCard(session)
-    //     .title('Fortune cookie')
-    //     .text(quotes[index])
-    //     .images([builder.CardImage.create(session, 'http://cliparts.co/cliparts/kcK/ngA/kcKngAb6i.jpg')]);
-
-    // session.send(msg);
+    session.send(session.message.text);
 });
 
 // bot.on('conversationUpdate', function (message) {
