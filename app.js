@@ -41,13 +41,13 @@ var bot = new builder.UniversalBot(connector, function (session) {
     if (session.message.entities) {
         var botId = session.message.bot.id;
         session.send(botId);
-        
-        session.message.entities
-            .filter(entity => ((entity.type === "mention") && (entity.mentioned.id.toLowerCase() === botId)))
-            .forEach(entity => {
-                text = text.replace(entity.text, "");
-            });
-        text = text.trim();
+
+        // session.message.entities
+        //     .filter(entity => ((entity.type === "mention") && (entity.mentioned.id.toLowerCase() === botId)))
+        //     .forEach(entity => {
+        //         text = text.replace(entity.text, "");
+        //     });
+        // text = text.trim();
     }
 
     session.send(text);
