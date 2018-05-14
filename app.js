@@ -37,20 +37,8 @@ function randomIntInc (low, high) {
 
 // Receive messages from the user and respond by echoing each message back (prefixed with 'You said:')
 var bot = new builder.UniversalBot(connector, function (session) {
-    session.send(session.message.text);
+    // session.send(session.message.text);
 });
-
-// bot.on('conversationUpdate', function (message) {
-//     if (message.membersAdded && message.membersAdded.length > 0) {
-//         // Say hello
-//         var isGroup = message.address.conversation.isGroup;
-//         var txt = isGroup ? "Hello everyone!" : "Hello...";
-//         var reply = new builder.Message()
-//                 .address(message.address)
-//                 .text(txt);
-//         bot.send(reply);
-//     }
-// });
 
 bot.recognizer({
     recognize: function (context, done) {
@@ -59,6 +47,7 @@ bot.recognizer({
         if (context.message.text) {
             switch (context.message.text.toLowerCase()) {
                 case 'fortune':
+                case 'fortune bot fortune':
                     intent = { score: 1.0, intent: 'Fortune' };
                     break;
             }
@@ -84,3 +73,11 @@ bot.dialog('fortuneDialog', function (session) {
     // session.send(quotes[index]).endDialog();
 
 }).triggerAction({ matches: 'Fortune' });
+
+bot.dialog('hashTagDialog', function (session) {
+    var regex = /\B#\w*[a-zA-Z]+\w*/;
+    var result = session.message.text.match(regex);
+    
+
+
+}).triggerAction({matches: /\B#\w*[a-zA-Z]+\w*/ });
