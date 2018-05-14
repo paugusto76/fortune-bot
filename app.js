@@ -37,27 +37,12 @@ function randomIntInc (low, high) {
 
 // Receive messages from the user and respond by echoing each message back (prefixed with 'You said:')
 var bot = new builder.UniversalBot(connector, function (session) {
-    session.send(session.message.text);
-});
-
-bot.recognizer({
-    recognize: function (context, done) {
-        var intent = { score: 0.0 };
-  
-        if (context.message.text) {
-            switch (context.message.text.toLowerCase().trim()) {
-                case 'fortune':
-                case 'fortune bot fortune':
-                    intent = { score: 1.0, intent: 'Fortune' };
-                    break;
-            }
-        }
-        done(null, intent);
-    }
-});
-  
-bot.dialog('fortuneDialog', function (session) {
-    var index = randomIntInc(0, quotes.length - 1);
+    if (session.message.text) {
+        switch (session.message.text.toLowerCase().trim()) {
+            case 'fortune':
+            case 'fortune bot fortune':
+                
+            var index = randomIntInc(0, quotes.length - 1);
 
     var msg = new builder.Message(session);
     msg.attachmentLayout(builder.AttachmentLayout.carousel);
@@ -70,7 +55,10 @@ bot.dialog('fortuneDialog', function (session) {
 
     session.send(msg).endDialog();
 
-    // session.send(quotes[index]).endDialog();
-
-}).triggerAction({ matches: 'Fortune' });
-
+                break;
+            default:
+                session.send(session.message.text);
+                break;
+        }
+    }
+});
