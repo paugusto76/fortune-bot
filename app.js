@@ -45,7 +45,7 @@ bot.recognizer({
         var intent = { score: 0.0 };
   
         if (context.message.text) {
-            switch (context.message.text.toLowerCase()) {
+            switch (context.message.text.toLowerCase().trim()) {
                 case 'fortune':
                 case 'fortune bot fortune':
                     intent = { score: 1.0, intent: 'Fortune' };
@@ -74,10 +74,3 @@ bot.dialog('fortuneDialog', function (session) {
 
 }).triggerAction({ matches: 'Fortune' });
 
-bot.dialog('hashTagDialog', function (session) {
-    var regex = /\B#\w*[a-zA-Z]+\w*/;
-    var result = session.message.text.match(regex);
-    
-
-
-}).triggerAction({matches: /\B#\w*[a-zA-Z]+\w*/ });
