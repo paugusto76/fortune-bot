@@ -37,7 +37,7 @@ function randomIntInc (low, high) {
 
 // Receive messages from the user and respond by echoing each message back (prefixed with 'You said:')
 var bot = new builder.UniversalBot(connector, function (session) {
-    // session.send(session.message.text);
+    session.send(session.message.text);
 });
 
 bot.recognizer({
