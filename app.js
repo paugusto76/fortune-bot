@@ -42,7 +42,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
     try{
         if (session.message.entities) {
             session.message.entities
-                .filter(entity => ((entity.type === "mention") && (entity.mentioned.id.toLowerCase() === session.message.bot.id)))
+                .filter(entity => ((entity.type === "mention") && (entity.mentioned.id.toLowerCase() === session.message.address.bot.id)))
                 .forEach(entity => {
                     text = text.replace(entity.text, "");
                 });
