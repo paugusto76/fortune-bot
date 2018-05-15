@@ -52,11 +52,9 @@ var bot = new builder.UniversalBot(connector, function (session) {
         session.send('error occurred: ' + err.message);
         console.log(err);
     }
-    
-    
-    
+
     if (text) {
-        switch (session.message.text.toLowerCase().trim()) {
+        switch (text.toLowerCase().trim()) {
             case 'fortune':
                 var index = randomIntInc(0, quotes.length - 1);
 
