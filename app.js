@@ -52,33 +52,41 @@ var bot = new builder.UniversalBot(connector, function (session) {
         session.send('error occurred: ' + err.message);
         console.log(err);
     }
-
-    session.send(text);
     
     
     
-    // if (session.message.text) {
-    //     switch (session.message.text.toLowerCase().trim()) {
-    //         case 'fortune':
-    //         case 'fortune bot fortune':
-                
-    //             var index = randomIntInc(0, quotes.length - 1);
+    if (text) {
+        switch (session.message.text.toLowerCase().trim()) {
+            case 'fortune':
+                var index = randomIntInc(0, quotes.length - 1);
 
-    //             var msg = new builder.Message(session);
-    //             msg.attachmentLayout(builder.AttachmentLayout.carousel);
-    //             msg.attachments([
-    //                 new builder.HeroCard(session)
-    //                     .title('Fortune cookie')
-    //                     .text(quotes[index])
-    //                     .images([builder.CardImage.create(session, 'https://classroomclipart.com/images/gallery/Clipart/Food/Dessert_Clipart/fortune_cookie.jpg')])
-    //             ]);
+                var msg = new builder.Message(session);
+                msg.attachmentLayout(builder.AttachmentLayout.carousel);
+                msg.attachments([
+                    new builder.HeroCard(session)
+                        .title('Fortune cookie')
+                        .text(quotes[index])
+                        .images([builder.CardImage.create(session, 'https://classroomclipart.com/images/gallery/Clipart/Food/Dessert_Clipart/fortune_cookie.jpg')])
+                ]);
 
-    //             session.send(msg).endDialog();
+                session.send(msg).endDialog();
 
-    //             break;
-    //         default:
-    //             session.send(session.message.text.toLowerCase().trim());
-    //             break;
-    //     }
-    // }
+                break;
+            case 'help':
+                var i = randomIntInc(0, 2);
+                switch(i) {
+                    case 0:
+                        session.send('For now, i only respond to "fortune" command...');
+                        break;
+                    case 1:
+                        session.send('Please type "fortune" and I will help you...');
+                        break;
+                    case 2:
+                        session.send('type "fortune" and be amazed...');
+                        break;
+                } 
+            default:
+                break;
+        }
+    }
 });
