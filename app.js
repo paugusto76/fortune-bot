@@ -40,7 +40,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
     var text = session.message.text;
 
     try{
-        if (xpto.entities) {
+        if (session.message.entities) {
             session.message.entities
                 .filter(entity => ((entity.type === "mention") && (entity.mentioned.id.toLowerCase() === botId)))
                 .forEach(entity => {
