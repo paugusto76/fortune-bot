@@ -38,9 +38,19 @@ function randomIntInc (low, high) {
 // Receive messages from the user and respond by echoing each message back (prefixed with 'You said:')
 var bot = new builder.UniversalBot(connector, function (session) {
     var text = session.message.text;
-    if (session.message.entities) {
-        var botId = session.message.bot.id;
-        session.send(botId);
+
+    try{
+        if (xpto.entities) {
+            session.message.entities
+                .filter(entity => ((entity.type === "mention") && (entity.mentioned.id.toLowerCase() === botId)))
+                .forEach(entity => {
+                    text = text.replace(entity.text, "");
+                });
+            text = text.trim();
+        }
+    } catch(err) {
+        session.send('error occurred: ' + err.message);
+        console.log(err);
     }
 
     session.send(text);
